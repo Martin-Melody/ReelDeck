@@ -1,0 +1,86 @@
+<div class="container-fluid col-12 col-md-6 col-xl-3 mt-5">
+    <h2>Sign Up</h2>
+    <hr />
+    <form class="form-container" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+            <mat-card-content class="formCard">
+
+                <!-- Email  -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="full-width mt-2">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" type="email" matInput placeholder="email">
+                            <mat-error *ngIf="email?.invalid && email?.touched"> You must enter an Email</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- userName  -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="full-width mt-2">
+                            <mat-label>user name</mat-label>
+                            <input formControlName="userName" type="text" matInput placeholder="user name">
+                            <mat-error *ngIf="userName?.invalid && userName?.touched"> You must enter an user name
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Password  -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                            <mat-error *ngIf="password?.invalid && password?.touched">You must eneter a Password
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <!-- Confirm Password  -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input formControlName="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password?.invalid && password?.touched">You must eneter a Password
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+            </mat-card-content>
+            <button mat-raised-button color="Primary" type="submit" [disabled]="!signUpForm.valid">
+                Login
+            </button>
+
+        </mat-card>
+
+
+
+    </form>
+
+    <div class="alternateLinks">
+        <button mat-raised-button color="Accent" class="links" (click)="goToLogin()" matTooltip="Click here to Login"
+            matTooltipPosition="right">
+            Already have an Account?
+        </button>
+    </div>
+    <div class="alternateLinks">
+        <button mat-raised-button color="Accent" class="links" (click)="goToLogin()" matTooltip="sign up with Google"
+            matTooltipPosition="left">
+            sign up with Google
+            <img src="../../../assets/images/icons8-google-48.png" alt="">
+        </button>
+    </div>
+    <hr />
+</div>
