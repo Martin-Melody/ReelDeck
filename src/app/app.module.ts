@@ -19,6 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
+import { MatDialogModule } from "@angular/material/dialog";
 // ....................
 
 // Form Modules
@@ -44,6 +45,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { ConfirmComponent } from './Dialog/confirm/confirm.component';
+import { AlertComponent } from './Dialog/alert/alert.component';
 // ....................
 
 
@@ -57,6 +60,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     HomeComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    ConfirmComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,15 +6,17 @@ import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SingUpComponent } from './Components/sing-up/sing-up.component';
 import { VerifyEmailComponent } from './Components/verify-email/verify-email.component';
+import { ConfirmComponent } from './Dialog/confirm/confirm.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'login', pathMatch:'full'},
-  {path:"login", component:LoginComponent},
-  {path:"signup", component:SingUpComponent},
-  {path:"forgotpassword", component:ForgotPasswordComponent},
-  {path:"home", component:HomeComponent},
-  {path:"verify", component:VerifyEmailComponent},
-  {path:"**",redirectTo:"login"}
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SingUpComponent },
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'verify', component: VerifyEmailComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

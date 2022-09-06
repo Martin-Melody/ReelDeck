@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { DialogService } from './dialog.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _auth: AngularFireAuth, private _router: Router) {}
+  constructor(
+    private _auth: AngularFireAuth,
+    private _router: Router,
+    private _dialogService: DialogService
+  ) {}
 
   // Login Method
 
@@ -16,15 +21,21 @@ export class AuthService {
         localStorage.setItem('token', 'true');
 
         if (res.user?.emailVerified == true) {
-          this._router.navigate(['/','home']);
+          this._router.navigate(['/', 'home']);
         } else {
-          alert('meow')
-          this._router.navigate(['/','verify']);
+          this._dialogService.alertDialog({
+            title: 'Looks like your email is not verified :O',
+            message: 'Have you tried looking in your spam for our email??',
+          });
+          this._router.navigate(['/', 'verify']);
         }
       },
       (err) => {
-        alert('Something went wrong.');
-        this._router.navigate(['/','login']);
+        this._dialogService.alertDialog({
+          title: 'User not Found',
+          message: 'please enter your details again',
+        });
+        this._router.navigate(['/', 'login']);
       }
     );
   }
@@ -34,12 +45,15 @@ export class AuthService {
     this._auth.createUserWithEmailAndPassword(email, password).then(
       (res) => {
         alert('Registration Successful');
-        this._router.navigate(['/','verify']);
+        this._router.navigate(['/', 'verify']);
         this.SendVerficationEmail(res.user);
       },
       (err) => {
-        alert('Something went Wrong');
-        this._router.navigate(['/','register']);
+        this._dialogService.alertDialog({
+          title: 'Something went wrong :/',
+          message: 'Please try registering again.',
+        });
+        this._router.navigate(['/', 'register']);
       }
     );
   }
@@ -61,10 +75,17 @@ export class AuthService {
   forgotPassword(email: string) {
     this._auth.sendPasswordResetEmail(email).then(
       () => {
-        this._router.navigate(['/','login']);
+        this._dialogService.alertDialog({
+          title: 'Link successfully send',
+          message: 'Check your Email!',
+        });
+        this._router.navigate(['/', 'login']);
       },
       (err) => {
-        alert('Soemthing Went Wrong');
+        this._dialogService.alertDialog({
+          title: 'Something went wrong :?',
+          message: 'please try again.',
+        });
       }
     );
   }
@@ -75,15 +96,9 @@ export class AuthService {
       .then((u) => u?.sendEmailVerification())
       .then(
         () => {
-          this._router.navigate(['/','verify']);
+          this._router.navigate(['/', 'verify']);
         },
-        (err: any) => {
-          alert(
-            'Something Went Wrong. Not able to send mail to registered Email.'
-          );
-        }
+        (err: any) => {}
       );
   }
 }
-
-
