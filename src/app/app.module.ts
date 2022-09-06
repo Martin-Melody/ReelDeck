@@ -34,9 +34,19 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './Components/verify-email/verify-email.component';
 // ....................
 
+// Angular Fire
+import { AngularFireModule } from "@angular/fire/compat";
+// ....................
+
 // Other
 import { HttpClientModule } from "@angular/common/http";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 // ....................
+
+
 
 
 @NgModule({
@@ -67,6 +77,10 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule,
     MatCardModule,
     MatInputModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "reeldeck": {
+      "hosting": {
+        "ReelDeck": [
+          "reeldeck"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "reeldeck"
+  }
+}

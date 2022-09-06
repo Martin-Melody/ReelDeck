@@ -101,6 +101,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ReelDeck:build:production",
+            "firebaseProject": "reeldeck",
+            "firebaseHostingSite": "reeldeck"
+          }
         }
       }
     }

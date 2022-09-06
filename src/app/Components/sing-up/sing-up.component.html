@@ -1,7 +1,7 @@
 <div class="container-fluid col-12 col-md-6 col-xl-3 mt-5">
     <h2>Sign Up</h2>
     <hr />
-    <form class="form-container" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <form class="form-container" [formGroup]="signUpForm" (ngSubmit)="register()">
         <mat-card>
             <mat-card-content class="formCard">
 
@@ -60,7 +60,7 @@
 
             </mat-card-content>
             <button mat-raised-button color="Primary" type="submit" [disabled]="!signUpForm.valid">
-                Login
+                Register
             </button>
 
         </mat-card>

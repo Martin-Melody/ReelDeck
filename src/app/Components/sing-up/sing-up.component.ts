@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class SingUpComponent implements OnInit {
   signUpForm!: FormGroup;
   hide = true;
-  constructor(private _formBuilder: FormBuilder, private _router: Router) {}
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private _authService:AuthService) {}
 
   ngOnInit(): void {
     this.signUpForm = this._formBuilder.group({
@@ -38,11 +39,12 @@ export class SingUpComponent implements OnInit {
     return this.signUpForm.get('confirmPassword');
   }
 
-  onSubmit() {
-    console.log(this.signUpForm);
+  register() {
+
+    this._authService.register(this.signUpForm.value.email, this.signUpForm.value.password)
   }
 
-  goToLogin(){
-    this._router.navigate(['/','login'])
+  goToLogin() {
+    this._router.navigate(['/', 'login']);
   }
 }

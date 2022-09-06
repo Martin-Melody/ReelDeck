@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators, FormArray } from "@angular/forms";
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hide = true;
-  constructor(private _formBuilder: FormBuilder, private _router:Router) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _router: Router,
+    private _authSerivce: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
@@ -27,15 +32,16 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onSubmit() {
-    console.log(this.loginForm.value);
+  // Login Method
+  Login() {
+   this._authSerivce.login(this.loginForm.value.email, this.loginForm.value.password)
   }
 
-  goToForgotPassword(){
+  goToForgotPassword() {
     this._router.navigate(['/', 'forgotpassword']);
   }
 
-  goToSignUp(){
-    this._router.navigate(['/','signup'])
+  goToSignUp() {
+    this._router.navigate(['/', 'signup']);
   }
 }
