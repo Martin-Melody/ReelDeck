@@ -50,30 +50,10 @@ export class LoginComponent implements OnInit {
     this._router.navigate(['/', 'signup']);
   }
 
-  yesNoDialog() {
-    this._dialogService.confirmDialog({
-      title: 'Are you sure',
-      message: ' Are you sure you want to do this?',
-      confirmText: 'yes',
-      cancelText: 'No',
-    });
+  // Sign In With Google
+  signInWithGoogle() {
+    this._authSerivce.signInWithGoogle()
   }
 
-  confirmCancel() {
-    this._dialogService.confirmDialog({
-      title: 'Please confrim action',
-      message: 'Please confirm whether you want to do this',
-      confirmText: 'Confirm',
-      cancelText: 'Cancel',
-    });
-  }
 
-  yesNotSure() {
-    this._dialogService.confirmDialog({
-      title: 'Are you sure',
-      message: ' Are you sure you want to do this?',
-      confirmText: 'yes',
-      cancelText: 'Not Sure',
-    });
-  }
 }

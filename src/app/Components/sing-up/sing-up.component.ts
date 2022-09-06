@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { PasswordValidator } from 'src/app/shared/validationServices/password-validator.service';
+
 
 
 @Component({
@@ -12,7 +14,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class SingUpComponent implements OnInit {
   signUpForm!: FormGroup;
   hide = true;
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private _authService:AuthService) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _router: Router,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.signUpForm = this._formBuilder.group({
@@ -20,7 +26,7 @@ export class SingUpComponent implements OnInit {
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
-    });
+    },{validator: PasswordValidator});
   }
 
   get email() {
@@ -40,11 +46,22 @@ export class SingUpComponent implements OnInit {
   }
 
   register() {
-
-    this._authService.register(this.signUpForm.value.email, this.signUpForm.value.password)
+    this._authService.register(
+      this.signUpForm.value.email,
+      this.signUpForm.value.password
+    );
   }
 
   goToLogin() {
     this._router.navigate(['/', 'login']);
+  }
+
+  // Sign In With Google
+  signInWithGoogle() {
+    this._authService.signInWithGoogle();
+  }
+
+  shotInfo(){
+    console.log(this.signUpForm);
   }
 }

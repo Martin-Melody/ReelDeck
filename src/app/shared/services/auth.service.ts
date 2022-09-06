@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { DialogService } from './dialog.service';
@@ -27,7 +28,6 @@ export class AuthService {
             title: 'Looks like your email is not verified :O',
             message: 'Have you tried looking in your spam for our email??',
           });
-          this._router.navigate(['/', 'verify']);
         }
       },
       (err) => {
@@ -44,8 +44,11 @@ export class AuthService {
   register(email: string, password: string) {
     this._auth.createUserWithEmailAndPassword(email, password).then(
       (res) => {
-        alert('Registration Successful');
-        this._router.navigate(['/', 'verify']);
+        this._dialogService.alertDialog({
+          title: 'Registration successful',
+          message: 'Welcome to the Team :) and make sure to verify your email.',
+        });
+        this._router.navigate(['/', 'login']);
         this.SendVerficationEmail(res.user);
       },
       (err) => {
@@ -96,9 +99,30 @@ export class AuthService {
       .then((u) => u?.sendEmailVerification())
       .then(
         () => {
-          this._router.navigate(['/', 'verify']);
+          this._router.navigate(['/', 'login']);
         },
         (err: any) => {}
       );
   }
+
+  // Sign In With Google
+  signInWithGoogle() {
+    return this._auth.signInWithPopup(new GoogleAuthProvider()).then(
+      (res) => {
+        this._router.navigate(['/home']);
+        localStorage.setItem('token', JSON.stringify(res.user?.uid));
+      },
+      (err) => {
+        this._dialogService.alertDialog({
+          title:'Looks like there was a problem :/',
+          message:'Try creating an account the other way :).'
+        })
+      }
+    );
+  }
+
+  // Check if user is logged in
+  // isLoggedIn(){
+  //   reutrn this._auth.
+  // }
 }

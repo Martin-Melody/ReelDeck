@@ -34,7 +34,8 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Password</mat-label>
                             <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-                            <mat-error *ngIf="password?.invalid && password?.touched">You must eneter a Password
+                            <mat-error *ngIf="password?.invalid && password?.touched">
+                                You must enter a password
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -47,12 +48,16 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Confirm Password</mat-label>
                             <input formControlName="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
+                            <mat-error *ngIf="signUpForm.errors?.['misMatch']">
+                                Passwords must match
+                            </mat-error>
                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                                 [attr.aria-pressed]="hide">
                                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </button>
-                            <mat-error *ngIf="password?.invalid && password?.touched">You must eneter a Password
-                            </mat-error>
+                            <small *ngIf="signUpForm.errors?.['misMatch']">
+                                <mat-error>Passwords Don't Match</mat-error>
+                            </small>
                         </mat-form-field>
                     </div>
                 </div>
@@ -62,10 +67,9 @@
             <button mat-raised-button color="Primary" type="submit" [disabled]="!signUpForm.valid">
                 Register
             </button>
-
         </mat-card>
 
-
+        
 
     </form>
 
@@ -76,8 +80,8 @@
         </button>
     </div>
     <div class="alternateLinks">
-        <button mat-raised-button color="Accent" class="links" (click)="goToLogin()" matTooltip="sign up with Google"
-            matTooltipPosition="left">
+        <button mat-raised-button color="Accent" class="links" matTooltip="sign up with Google"
+            matTooltipPosition="left" (click)="signInWithGoogle()">
             sign up with Google
             <img src="../../../assets/images/icons8-google-48.png" alt="">
         </button>
