@@ -1,0 +1,83 @@
+:root{
+    --nav-bg-color:#86a397;
+    --sidenav-pot-color:#6A8C7E;
+    --sidenav-pot-color2: #A38692;
+}
+
+mat-sidenav {
+    background-color: #6A8C7E;
+    /* filter: brightness(50%); */
+    width: 220px;
+    height: 100%;
+}
+
+.ReelDeckIcon {
+    height: 40px;
+
+}
+
+@media (max-width:680px){
+    .box{
+        display: none;
+    }
+
+    .menuIcon{
+        display: inline !important;
+    }
+}
+
+.menuIcon{
+   display: none;
+}
+
+
+.ReelDeck {
+    font-family: 'lato', 'arial', sans-serif;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.navTitle{
+    margin-top: 25px;
+}
+
+.title{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+.sidenavBtn{
+    width: 100% !important;
+    margin: 0;
+}
+
+mat-toolbar mat-icon {
+    color: #6d8299;
+}
+
+mat-toolbar {
+    justify-content: space-between;
+    background-color:#86a397 ;
+}
+
+mat-toolbar mat-icon {
+    justify-content: center;
+}
+
+button, mat-raised-button{
+    margin-left: 10px;
+}
+
+button mat-raised-button .test{
+    width: 100%;
+}
+
+
+mat-sidenav-container {
+    height: 100vh;
+}
+
+
+
+

@@ -1,0 +1,33 @@
+mat-sidenav{
+    background: #0f172a;
+    width: 320px;
+    height: 100%;
+}
+
+.ReelDeckIcon{
+    height: 40px;
+    
+}
+
+.ReelDeck{
+    font-family:'lato','arial', sans-serif;
+    font-weight: 700;
+    font-size: larger;
+}
+
+
+mat-toolbar mat-icon{
+    color: #6d8299;
+}
+
+mat-toolbar{
+    justify-content: space-between;
+    background-color: #86a397;
+}
+
+mat-toolbar mat-icon{
+    justify-content: center;
+}
+
+
+

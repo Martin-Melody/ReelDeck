@@ -47,6 +47,11 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ConfirmComponent } from './Dialog/confirm/confirm.component';
 import { AlertComponent } from './Dialog/alert/alert.component';
+import { DashboardComponent } from './Components/Admin/dashboard/dashboard.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { BrowseComponent } from './Components/browse/browse.component';
+import { CreateDeckComponent } from './Components/create-deck/create-deck.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 // ....................
 
 
@@ -62,6 +67,11 @@ import { AlertComponent } from './Dialog/alert/alert.component';
     VerifyEmailComponent,
     ConfirmComponent,
     AlertComponent,
+    DashboardComponent,
+    NavbarComponent,
+    BrowseComponent,
+    CreateDeckComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

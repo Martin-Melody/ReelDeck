@@ -1,0 +1,87 @@
+<mat-toolbar>
+    <span class="ReelDeck">ReelDeck<img class="ReelDeckIcon" src="../../../../assets/images/reeldeck.png"
+            alt="icon"></span>
+
+    <div class="box">
+        <button mat-raised-button [routerLink]="['/','home']">
+            Home
+        </button>
+
+        <button mat-raised-button [routerLink]="['/','browse']" >
+            Browse
+        </button>
+
+        <button mat-raised-button [routerLink]="['/','createDeck']">
+            Create Deck
+        </button>
+
+        <button mat-raised-button [routerLink]="['/','profile']">
+           Profile
+        </button>
+
+        <button mat-raised-button (click)="logOut()">
+            <mat-icon>logout</mat-icon>
+        </button>
+        <!-- <div class="sidenavDropDown"> -->
+
+        <!-- </div> -->
+
+    </div>
+
+    <div class="menuIcon">
+        <button mat-icon-button *ngIf="sidenav.mode == 'side'" (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+            <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened #sidenav="matSidenav">
+
+        <mat-divider></mat-divider>
+        <div class="navTitle">
+            <h3 class="title">Nav</h3>
+        </div>
+        <mat-divider></mat-divider>
+
+        <mat-list>
+            <mat-list-item>
+                <button mat-raised-button class="sidenavBtn" [routerLink]="['/','home']">
+                    <mat-icon>home</mat-icon>
+                    Home
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button class="sidenavBtn" [routerLink]="['/','browse']">
+                    <mat-icon>dashboard</mat-icon>
+                    Browse
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button class="sidenavBtn" [routerLink]="['/','createDeck']">
+                    <mat-icon>create</mat-icon>
+                    Create Deck
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button class="sidenavBtn" [routerLink]="['/','profile']">
+                    <mat-icon>account_circle</mat-icon>
+                    profile
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button class="sidenavBtn" (click)="logOut()">
+                    <mat-icon>logout</mat-icon>
+                    Logout
+                </button>
+            </mat-list-item>
+        </mat-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
