@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
+import { NavbarService } from "../../shared/services/navbar.service";
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,12 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _authSerivce: AuthService,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
+
+
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],

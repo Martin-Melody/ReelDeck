@@ -2,7 +2,8 @@
     <span class="ReelDeck">ReelDeck<img class="ReelDeckIcon" src="../../../../assets/images/reeldeck.png"
             alt="icon"></span>
 
-    <div class="box">
+
+    <div class="box" *ngIf="nav.visible"> 
         <button mat-raised-button [routerLink]="['/','home']">
             Home
         </button>
@@ -37,7 +38,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav mode="side" opened #sidenav="matSidenav">
+    <mat-sidenav mode="side" #sidenav="matSidenav">
 
         <mat-divider></mat-divider>
         <div class="navTitle">
