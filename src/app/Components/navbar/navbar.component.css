@@ -35,6 +35,7 @@ mat-sidenav {
     font-family: 'lato', 'arial', sans-serif;
     font-weight: 700;
     font-size: larger;
+    cursor: pointer;
 }
 
 .navTitle{
