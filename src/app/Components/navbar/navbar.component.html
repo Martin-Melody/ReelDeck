@@ -30,7 +30,7 @@
     </div>
 
     <div class="menuIcon">
-        <button mat-icon-button *ngIf="sidenav.mode == 'side'" (click)="sidenav.toggle()">
+        <button mat-icon-button *ngIf="sidenav.mode == 'over'" (click)="sidenav.toggle()">
             <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
             <mat-icon *ngIf="sidenav.opened">close</mat-icon>
         </button>
@@ -38,7 +38,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav mode="side" #sidenav="matSidenav">
+    <mat-sidenav mode="over" #sidenav="matSidenav">
 
         <mat-divider></mat-divider>
         <div class="navTitle">

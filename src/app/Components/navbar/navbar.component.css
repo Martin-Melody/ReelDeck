@@ -1,4 +1,5 @@
 :root{
+    --nav-bg-color-lighter:#a4bab1; /* 25% lighter*/
     --nav-bg-color:#86a397;
     --sidenav-pot-color:#6A8C7E;
     --sidenav-pot-color2: #A38692;
@@ -6,7 +7,6 @@
 
 mat-sidenav {
     background-color: #6A8C7E;
-    /* filter: brightness(50%); */
     width: 220px;
     height: 100%;
 }
@@ -58,7 +58,7 @@ mat-toolbar mat-icon {
 
 mat-toolbar {
     justify-content: space-between;
-    background-color:#86a397 ;
+    background-color:#a4bab1 ;
 }
 
 mat-toolbar mat-icon {

@@ -92,6 +92,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     FormsModule,
     MatCardModule,
     MatInputModule,
+    
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
