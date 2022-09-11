@@ -3,15 +3,20 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { DialogService } from './dialog.service';
+import { Auth } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  LoginedState:boolean = false;
+
   constructor(
     private _auth: AngularFireAuth,
     private _router: Router,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
+    private _fireAuth:Auth
   ) {}
 
   // Login Method
@@ -119,6 +124,13 @@ export class AuthService {
         })
       }
     );
+  }
+
+  get isLoggedIn():boolean{
+    const user = JSON.parse(localStorage.getItem('token') as string);
+
+    return user !== null? true : false;
+
   }
 
   // Check if user is logged in

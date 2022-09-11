@@ -11,19 +11,20 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { SingUpComponent } from './Components/sing-up/sing-up.component';
 import { VerifyEmailComponent } from './Components/verify-email/verify-email.component';
 import { ConfirmComponent } from './Dialog/confirm/confirm.component';
+import { AuthGuardGuard } from './Guards/auth-guard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SingUpComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuardGuard] },
   { path: 'verify', component: VerifyEmailComponent },
   { path: 'confirm', component: ConfirmComponent },
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'createDeck', component:CreateDeckComponent},
-  { path: 'profile', component:ProfileComponent},
-  { path: 'browse', component:BrowseComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuardGuard]},
+  { path: 'createDeck', component:CreateDeckComponent, canActivate:[AuthGuardGuard]},
+  { path: 'profile', component:ProfileComponent, canActivate:[AuthGuardGuard]},
+  { path: 'browse', component:BrowseComponent, canActivate:[AuthGuardGuard]},
    { path: '**', redirectTo: 'login' },
 ];
 

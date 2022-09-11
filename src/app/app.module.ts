@@ -52,6 +52,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { BrowseComponent } from './Components/browse/browse.component';
 import { CreateDeckComponent } from './Components/create-deck/create-deck.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { AuthGuardGuard } from './Guards/auth-guard.guard';
+import { AuthService } from './shared/services/auth.service';
 // ....................
 
 
@@ -99,7 +101,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     MatDialogModule,
   ],
-  providers: [],
+  providers: [AuthGuardGuard, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
