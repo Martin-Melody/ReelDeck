@@ -13,7 +13,7 @@ import { VerifyEmailComponent } from './Components/verify-email/verify-email.com
 import { ConfirmComponent } from './Dialog/confirm/confirm.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SingUpComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'createDeck', component:CreateDeckComponent},
   { path: 'profile', component:ProfileComponent},
   { path: 'browse', component:BrowseComponent},
-   { path: '**', redirectTo: 'dashboard' },
+   { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
