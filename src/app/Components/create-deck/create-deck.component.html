@@ -1,79 +1,96 @@
-<form class="form-container" [formGroup]="pseudoDeck" (ngSubmit)="CreateDeck()">
-    <mat-card>
-        <mat-card-content>
-
-            <!-- Title -->
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Title</mat-label>
-                        <input type="text" formControlName="Title" matInput placeholder="Title">
-                        <mat-error *ngIf="Title?.invalid && Title?.touched"> You must enter an Title</mat-error>
-                    </mat-form-field>
+<div class="container">
+    <form class="form-container" [formGroup]="pseudoDeck" (ngSubmit)="CreateDeck()">
+        <mat-card>
+            <mat-card-content>
+    
+                <!-- Title -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" style="width:500px;">
+                            <mat-label>Title</mat-label>
+                            <input type="text" formControlName="Title" matInput placeholder="Title">
+                            <mat-error *ngIf="Title?.invalid && Title?.touched"> You must enter an Title</mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
-            </div>
-
-
-
-            <!-- Questions -->
-        <div class="row" formArrayName="Questions" *ngFor="let questions of Questions.controls; index as i">
-            <div class="col-md-6">
-                <mat-form-field appearance="outline">
-                    <mat-label>Questions</mat-label>
-                        <input type="text" [formControlName]="i" matInput placeholder="Questions">
-                        <mat-error *ngIf="Questions?.invalid && Questions?.touched"> You must enter at least one Answer
-                        </mat-error>
+                
+                <!-- Questions -->
+                <div class="row" formArrayName="Questions" *ngFor="let questions of Questions.controls; index as i">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Questions</mat-label>
+                            <input type="text" [formControlName]="i" matInput placeholder="Questions">
+                            <mat-error *ngIf="Questions?.invalid && Questions?.touched"> You must enter at least one Answer
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <!-- Answers -->
+                <div class="row" formArrayName="Answers" *ngFor="let answers of Answers.controls; index as i">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Answers</mat-label>
+                            <input type="text" [formControlName]="i" matInput placeholder="Answers">
+                            <mat-error *ngIf="Answers?.invalid && Answers?.touched"> You must enter at least one Answer
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <!-- ThumbnailUrl -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>ThumbNail</mat-label>
+                            <input type="text" formControlName="ThumbnailUrl" matInput placeholder="ThumbnailUrl">
+                            <mat-error *ngIf="ThumbnailUrl?.invalid && ThumbnailUrl?.touched"> You must enter a ThumbnailUrl
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <!-- Description -->
+                <div class="row" formArrayName="Genre">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <textarea formControlName="Description" matInput placeholder="Description"></textarea>
+                            <mat-error *ngIf="Description?.invalid && Description?.touched"> You must enter a Description
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <!-- Genre -->
+                <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Genres</mat-label>
+                    <mat-chip-list #chipList aria-label="Genre List" formArrayName="Genre" >
+                        <mat-chip *ngFor="let genres of Genres" (removed)="remove(genres)">
+                            {{genres.name}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input placeholder="Add Genres"  [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
                 </mat-form-field>
-            </div>
-        </div>
+    
 
-            <!-- Answers -->
-
-            <div class="row" formArrayName="Answers" *ngFor="let answers of Answers.controls; index as i">
-                <div class="col-md-6">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Answers</mat-label>
-                                <input type="text" [formControlName]="i" matInput placeholder="Answers">
-                                <mat-error *ngIf="Answers?.invalid && Answers?.touched"> You must enter at least one Answer
-                                </mat-error>
-                    </mat-form-field>
+                <div class="buttons">
+                    <button type="button" mat-raised-button (click)="addQnAs()">
+                        Add Question
+                    </button>
+        
+        
+                    <button mat-raised-button>
+                        Create Deck!
+                    </button>
                 </div>
-            </div>
 
-
-
-            <!-- ThumbnailUrl -->
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="outline">
-                        <mat-label>ThumbNail</mat-label>
-                        <input type="text" formControlName="ThumbnailUrl" matInput placeholder="ThumbnailUrl">
-                        <mat-error *ngIf="ThumbnailUrl?.invalid && ThumbnailUrl?.touched"> You must enter a ThumbnailUrl
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-
-            <!-- Description -->
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Description</mat-label>
-                        <textarea formControlName="Description" matInput placeholder="Description"></textarea>
-                        <mat-error *ngIf="Description?.invalid && Description?.touched"> You must enter a Description
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-
-            <button type="button" mat-raised-button (click)="addQnAs()">
-                Add Question
-            </button>
-
-
-            <button mat-raised-button>
-                Create Deck!
-            </button>
-        </mat-card-content>
-    </mat-card>
-</form>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

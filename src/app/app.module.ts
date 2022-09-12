@@ -24,6 +24,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 
 // Form Modules
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { MatSelectModule } from "@angular/material/select";
+import { MatChipsModule } from "@angular/material/chips";
 
 // ....................
 
@@ -94,6 +96,8 @@ import { AuthService } from './shared/services/auth.service';
     FormsModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
     
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
