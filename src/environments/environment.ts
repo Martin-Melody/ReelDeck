@@ -1,6 +1,6 @@
 export const environment = {
   production:false,
-  firebaseConfig: {
+  firebase : {
     apiKey: 'AIzaSyBJcTAkSSuPh5GN2ZkiQRZAcl-WzAYro9c',
     authDomain: 'reeldeck.firebaseapp.com',
     projectId: 'reeldeck',

@@ -51,7 +51,7 @@
                 </div>
     
                 <!-- Description -->
-                <div class="row" formArrayName="Genre">
+                <div class="row">
                     <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Description</mat-label>
@@ -66,7 +66,7 @@
                 <mat-form-field class="example-chip-list" appearance="fill">
                     <mat-label>Genres</mat-label>
                     <mat-chip-list #chipList aria-label="Genre List" formArrayName="Genre" >
-                        <mat-chip *ngFor="let genres of Genres" (removed)="remove(genres)">
+                        <mat-chip *ngFor="let genres in Genre" (removed)="remove(genres)">
                             {{genres.name}}
                             <button matChipRemove>
                                 <mat-icon>cancel</mat-icon>

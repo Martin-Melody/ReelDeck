@@ -23,7 +23,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     this._auth.signInWithEmailAndPassword(email, password).then(
-      (res) => {
+      (res:any) => {
         localStorage.setItem('token', 'true');
 
         if (res.user?.emailVerified == true) {
@@ -35,7 +35,7 @@ export class AuthService {
           });
         }
       },
-      (err) => {
+      (err:any) => {
         this._dialogService.alertDialog({
           title: 'User not Found',
           message: 'please enter your details again',
@@ -48,7 +48,7 @@ export class AuthService {
   // Register Method
   register(email: string, password: string) {
     this._auth.createUserWithEmailAndPassword(email, password).then(
-      (res) => {
+      (res:any) => {
         this._dialogService.alertDialog({
           title: 'Registration successful',
           message: 'Welcome to the Team :) and make sure to verify your email.',
@@ -56,7 +56,7 @@ export class AuthService {
         this._router.navigate(['/', 'login']);
         this.SendVerficationEmail(res.user);
       },
-      (err) => {
+      (err:any) => {
         this._dialogService.alertDialog({
           title: 'Something went wrong :/',
           message: 'Please try registering again.',
@@ -73,7 +73,7 @@ export class AuthService {
         localStorage.removeItem('token');
         this._router.navigate(['/', 'login']);
       },
-      (err) => {
+      (err:any) => {
         alert(err.message);
       }
     );
@@ -89,7 +89,7 @@ export class AuthService {
         });
         this._router.navigate(['/', 'login']);
       },
-      (err) => {
+      (err:any) => {
         this._dialogService.alertDialog({
           title: 'Something went wrong :?',
           message: 'please try again.',
@@ -101,7 +101,7 @@ export class AuthService {
   // Send Email Verification
   SendVerficationEmail(user: any) {
     this._auth.currentUser
-      .then((u) => u?.sendEmailVerification())
+      .then((u:any) => u?.sendEmailVerification())
       .then(
         () => {
           this._router.navigate(['/', 'login']);
@@ -113,11 +113,11 @@ export class AuthService {
   // Sign In With Google
   signInWithGoogle() {
     return this._auth.signInWithPopup(new GoogleAuthProvider()).then(
-      (res) => {
+      (res:any) => {
         this._router.navigate(['/home']);
         localStorage.setItem('token', JSON.stringify(res.user?.uid));
       },
-      (err) => {
+      (err:any) => {
         this._dialogService.alertDialog({
           title:'Looks like there was a problem :/',
           message:'Try creating an account the other way :).'
