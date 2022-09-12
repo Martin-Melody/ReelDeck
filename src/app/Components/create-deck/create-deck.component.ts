@@ -6,6 +6,9 @@ import { Genre } from "../../shared/interfaces/genre";
 import { ENTER, COMMA } from "@ANGULAR/cdk/keycodes";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { ViewEncapsulation } from "@angular/core";
+import { MatCardLgImage } from '@angular/material/card';
+import { BuiltinTypeName } from '@angular/compiler';
+import { DH_NOT_SUITABLE_GENERATOR } from 'constants';
 
 @Component({
   selector: 'app-create-deck',
@@ -32,7 +35,12 @@ export class CreateDeckComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.Genres.push({ name: value });
+
+
+      this.Genre.value.push({ name: value });
+
+
+      this.Genre.updateValueAndValidity();
     }
 
     // Clear the input value
@@ -40,7 +48,7 @@ export class CreateDeckComponent implements OnInit {
   }
 
   remove(_Genres: Genre): void {
-    const index = this.Genres.indexOf(_Genres);
+    // const index = this.pseudoDeck.indexOf(_Genres); here :((((()))))
 
     if (index >= 0) {
       this.Genres.splice(index, 1);
@@ -62,7 +70,7 @@ export class CreateDeckComponent implements OnInit {
       Answers: this._formBuilder.array(['']),
       ThumbnailUrl: ['', [Validators.required]],
       UserResult: [0],
-      Genre:this._formBuilder.array([''], Validators.required),
+      Genre:this._formBuilder.array([], Validators.required),
       Description: ['', [Validators.required]],
     }) as Deck;
   }

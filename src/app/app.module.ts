@@ -99,10 +99,10 @@ import { AuthService } from './shared/services/auth.service';
     MatSelectModule,
     MatChipsModule,
     
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     MatDialogModule,
   ],
   providers: [AuthGuardGuard, AuthService],
